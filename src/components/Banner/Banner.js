@@ -1,12 +1,17 @@
 import React from "react";
 
-function Banner({ bannerType, children }) {
+function Banner({ bannerType, handleRestart, children }) {
   const className = bannerType ? `${bannerType} banner` : "banner";
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className}>
+      {children}
+      <button onClick={handleRestart}>Restart game</button>
+    </div>
+  );
 }
 
-export function HappyBanner({ guessCount }) {
+export function HappyBanner({ guessCount, handleRestart }) {
   const content = (
     <p>
       <strong>Congratulations!</strong> Got it in{" "}
@@ -14,17 +19,25 @@ export function HappyBanner({ guessCount }) {
     </p>
   );
 
-  return <Banner bannerType={"happy"}>{content}</Banner>;
+  return (
+    <Banner bannerType={"happy"} handleRestart={handleRestart}>
+      {content}
+    </Banner>
+  );
 }
 
-export function SadBanner({ answer }) {
+export function SadBanner({ answer, handleRestart }) {
   const content = (
     <p>
       Sorry, the correct answer is <strong>{answer}</strong>.
     </p>
   );
 
-  return <Banner bannerType={"sad"}>{content}</Banner>;
+  return (
+    <Banner bannerType={"sad"} handleRestart={handleRestart}>
+      {content}
+    </Banner>
+  );
 }
 
 export default Banner;
