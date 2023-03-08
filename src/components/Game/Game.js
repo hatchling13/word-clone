@@ -7,6 +7,7 @@ import { WORDS } from "../../data";
 import { HappyBanner, SadBanner } from "../Banner/Banner";
 import GuessInput from "../GuessInput";
 import GuessResults from "../GuessResults";
+import Keyboard from "../Keyboard";
 
 function Game() {
   const [answer, setAnswer] = React.useState(sample(WORDS));
@@ -39,6 +40,7 @@ function Game() {
     <>
       <GuessResults results={results} answer={answer} />
       <GuessInput handleResults={handleResults} disabled={gameOver} />
+      <Keyboard results={results} answer={answer} />
       {gameOver &&
         (guessCount <= NUM_OF_GUESSES_ALLOWED && results.includes(answer) ? (
           <HappyBanner guessCount={guessCount} handleRestart={handleRestart} />
